@@ -8,7 +8,6 @@ read confignameInput
 sudo su<<EOF
   CONFIG_FILE="/etc/apache2/sites-available/"${confignameInput}".conf"
   if [ ! -e "${CONFIG_FILE}" ]; then
-
     echo "<VirtualHost *:80>ServerName ews.dev.com
           DocumentRoot /var/www/html/EWS_laravel/public
           <Directory /var/www/html/EWS_laravel>
@@ -21,19 +20,13 @@ sudo su<<EOF
      sudo a2ensite ${confignameInput};
      sudo a2dissite 000-default.conf;
      sudo service apache2 reload;
-
   else
      echo "File already exists."
-
      sudo a2ensite ${confignameInput};
      sudo a2dissite 000-default.conf;
      sudo service apache2 reload;
   fi
-
-
 EOF
-
-
 }
 
 function launchServiceFIle_14 {
@@ -47,9 +40,7 @@ read serviceNameInput
 sudo su<<EOF
 SERVICE_FILE="/etc/systemd/system/"${serviceNameInput}".service"
 if [ ! -e "${SERVICE_FILE}" ]; then
-
     echo 'Service file is not configured.. Creating a new Service File'
-
     echo "[Unit]
               Description= TCP/IP & Websocket Server Service File
               Documentation= JaypeeD
@@ -64,16 +55,11 @@ if [ ! -e "${SERVICE_FILE}" ]; then
 
 	     sudo systemctl daemon-reload
              echo "Creating Socket Server"
-
   else
      echo "File already exists."
   fi
 EOF
-
-
 }
-
-
 function launchServiceFIle_16 {
 
 sudo apt-get install -y nodejs;
@@ -85,9 +71,7 @@ read serviceNameInput
 sudo su<<EOF
 SERVICE_FILE="/lib/systemd/system/"${serviceNameInput}".service"
 if [ ! -e "${SERVICE_FILE}" ]; then
-
     echo 'Service file is not configured.. Creating a new Service File'
-
     echo "[Unit]
               Description= TCP/IP & Websocket Server Service File
               Documentation= JaypeeD
@@ -99,19 +83,13 @@ if [ ! -e "${SERVICE_FILE}" ]; then
                           Restart=on-failure
               [Install]
               WantedBy=multi-user.target" > ${SERVICE_FILE}
-
 	     sudo systemctl daemon-reload
              echo "Creating Socket Server"
-
   else
      echo "File already exists."
   fi
 EOF
-
-
 }
-
-
 function chooseVersion {
 echo "*************************************"
 echo "*                                   *" 
