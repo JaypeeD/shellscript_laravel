@@ -18,7 +18,7 @@ sudo su<<EOF
           ErrorLog ${APACHE_LOG_DIR}/error.log
           LogLevel warn
           CustomLog ${APACHE_LOG_DIR}/access.log combined
-    </VirtualHost>" > ${CONFIG_FILE}
+    </VirtualHost>" > /etc/apache2/sites-available/$confignameInput".conf"
     echo -e $"\nNew Virtual Host Created\n"
     
      sudo a2ensite ${confignameInput};
