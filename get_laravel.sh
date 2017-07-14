@@ -43,8 +43,6 @@ echo 'Installing Git ...'
 sudo apt-get install git;
 
 #Check if the directory is empty
-cd
-
 if [ "$(ls -A ${CHECK_DIRECTORY})" ]; then
    for i in $(ls -l ${CHECK_DIRECTORY})
       do
