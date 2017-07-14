@@ -37,7 +37,7 @@ sudo apt-get install git;
 
 #Check if the directory is empty
 if [ "$(ls -A ${CHECK_DIRECTORY})" ]; then
-   for i in $(ls -l ${CHECK_DIRECTORY})
+   for i in $(ls ${CHECK_DIRECTORY})
       do
 	sudo chown -R triune:triune ${CHECK_DIRECTORY}'/'${i};
 	sudo rm -r ${CHECK_DIRECTORY}'/'${i};
