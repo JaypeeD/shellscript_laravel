@@ -9,21 +9,25 @@ sudo su<<EOF
   CONFIG_FILE="/etc/apache2/sites-available/"${confignameInput}".conf"
   if [ ! -e "${CONFIG_FILE}" ]; then
     echo "
-    <VirtualHost *:80>
-    	  ServerName ews.dev.com
-          DocumentRoot /var/www/html/EWS_laravel/public
-          <Directory /var/www/html/EWS_laravel>
-                  AllowOverride All
-          </Directory>
-          ErrorLog ${APACHE_LOG_DIR}/error.log
-          LogLevel warn
-          CustomLog ${APACHE_LOG_DIR}/access.log combined
-    </VirtualHost>" > /etc/apache2/sites-available/$confignameInput".conf"
+   <VirtualHost *:80>
+	ServerName ews.dev.com
+	DocumentRoot /var/www/html/EWS_laravel/public
+	<Directory /var/www/html/EWS_laravel>
+	AllowOverride All
+	</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	LogLevel warn
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+   </VirtualHost>" > /etc/apache2/sites-available/$confignameInput".conf"
+    
     echo -e $"\nNew Virtual Host Created\n"
     
      sudo a2ensite ${confignameInput};
      sudo a2dissite 000-default.conf;
      sudo service apache2 reload;
+     sudo a2enmod rewrite;
+     sudo service apache2 restart;
   else
      echo "File already exists."
      sudo a2ensite ${confignameInput};
@@ -58,7 +62,11 @@ if [ ! -e "${SERVICE_FILE}" ]; then
               WantedBy=multi-user.target" > /etc/systemd/system/${serviceNameInput}".service"
 
 	     sudo systemctl daemon-reload
-             echo "Creating Socket Server"
+             echo 'Socket server successfully created'
+	     
+	     echo 'Enabling socket server ...'
+	     sudo systemctl enable ${serviceNameInput}".service"
+	     sudo systemctl start ${serviceNameInput}".service"
   else
      echo "File already exists."
   fi
@@ -88,7 +96,11 @@ if [ ! -e "${SERVICE_FILE}" ]; then
               [Install]
               WantedBy=multi-user.target" > /lib/systemd/system/${serviceNameInput}".service"
 	     sudo systemctl daemon-reload
-             echo "Creating Socket Server"
+             echo 'Socket server successfully created'
+	     
+	     echo 'Enabling socket server ...'
+	     sudo systemctl enable ${serviceNameInput}".service"
+	     sudo systemctl start ${serviceNameInput}".service"
   else
      echo "File already exists."
   fi
@@ -116,6 +128,4 @@ sudo apt-get install -y php7.0-mysql;
 sudo apt-get update;
 sudo apt-get install systemd;
 createVirtualHost
-chooseVersion 
-
-
+chooseVersion
