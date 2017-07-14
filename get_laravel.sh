@@ -48,8 +48,8 @@ cd
 if [ "$(ls -A ${CHECK_DIRECTORY})" ]; then
    for i in $(ls -l ${CHECK_DIRECTORY})
       do
-	sudo chown -R triune:triune ${i};
-	sudo rm -r ${i};
+	sudo chown -R triune:triune ${CHECK_DIRECTORY}'/'${i};
+	sudo rm -r ${CHECK_DIRECTORY}'/'${i};
       done
    installLaravel
    setPermissions
