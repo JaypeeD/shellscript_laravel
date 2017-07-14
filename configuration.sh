@@ -9,8 +9,7 @@ sudo su<<EOF
   CONFIG_FILE="/etc/apache2/sites-available/"${confignameInput}".conf"
   if [ ! -e "${CONFIG_FILE}" ]; then
 
-    echo "<VirtualHost *:80>
-          ServerName ews.dev.com
+    echo "<VirtualHost *:80>ServerName ews.dev.com
           DocumentRoot /var/www/html/EWS_laravel/public
           <Directory /var/www/html/EWS_laravel>
                   AllowOverride All
@@ -18,7 +17,7 @@ sudo su<<EOF
           ErrorLog ${APACHE_LOG_DIR}/error.log
           LogLevel warn
           CustomLog ${APACHE_LOG_DIR}/access.log combined
-       </VirtualHost>" > ${CONFIG_FILE}
+	  </VirtualHost>" > ${CONFIG_FILE}
      sudo a2ensite ${confignameInput};
      sudo a2dissite 000-default.conf;
      sudo service apache2 reload;
