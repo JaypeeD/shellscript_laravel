@@ -20,7 +20,7 @@ function setPermissions {
    read laravelInput
    
    if [ -z "$(LARAVEL_FOLDER_NAME)"]; then
-   LARAVEL_FOLDER_NAME=${laravelInput}
+	LARAVEL_FOLDER_NAME=${laravelInput}
    else
         echo "NOT EMPTY!"
    fi    
@@ -32,11 +32,9 @@ function setPermissions {
 }
 
 function setEncryptionKey {
-   cd ${CHECK_DIRECTORY}'/'${LARAVEL_FOLDER_NAME}<<EOF
+   cd ${CHECK_DIRECTORY}'/'${LARAVEL_FOLDER_NAME}
 
    sudo composer install
-
-   EOF
 }
 
 #Install Git and clone master repo of laravel from gitlab
@@ -45,12 +43,13 @@ echo 'Installing Git ...'
 sudo apt-get install git;
 
 #Check if the directory is empty
+cd
 
 if [ "$(ls -A ${CHECK_DIRECTORY})" ]; then
    for i in $(ls -l ${CHECK_DIRECTORY})
       do
-   sudo chown -R triune:triune ${i};
-   sudo rm -r ${i};
+	sudo chown -R triune:triune ${i};
+	sudo rm -r ${i};
       done
    installLaravel
    setPermissions
