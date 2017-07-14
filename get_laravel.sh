@@ -24,7 +24,7 @@ function setPermissions {
    sudo chmod -R 777 ${CHECK_DIRECTORY}'/storage';
 }
 
-function setEncryptionKey {
+function installComposer {
    cd ${CHECK_DIRECTORY}'/EWS_laravel'
 
    sudo composer install
@@ -36,8 +36,6 @@ echo 'Installing Git ...'
 sudo apt-get install git;
 
 #Check if the directory is empty
-cd
-
 if [ "$(ls -A ${CHECK_DIRECTORY})" ]; then
    for i in $(ls -l ${CHECK_DIRECTORY})
       do
@@ -46,11 +44,10 @@ if [ "$(ls -A ${CHECK_DIRECTORY})" ]; then
       done
    installLaravel
    setPermissions
-   setEncryptionKey  
+   installComposer  
   
 else
    installLaravel
    setPermissions 
-   setEncryptionKey 
-
+   installComposer 
 fi
