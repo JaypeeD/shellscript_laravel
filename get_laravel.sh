@@ -25,7 +25,7 @@ function setPermissions {
 }
 
 function setEncryptionKey {
-   cd ${CHECK_DIRECTORY}'/'${LARAVEL_FOLDER_NAME}
+   cd ${CHECK_DIRECTORY}'/EWS_laravel'
 
    sudo composer install
 }
