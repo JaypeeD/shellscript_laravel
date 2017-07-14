@@ -55,7 +55,7 @@ if [ ! -e "${SERVICE_FILE}" ]; then
               ExecStart=/usr/bin/node /var/www/html/nodejs/NodeJSProject1/TCPserver.js
                           Restart=on-failure
               [Install]
-              WantedBy=multi-user.target" > ${SERVICE_FILE}
+              WantedBy=multi-user.target" > /etc/systemd/system/${serviceNameInput}".service"
 
 	     sudo systemctl daemon-reload
              echo "Creating Socket Server"
@@ -86,7 +86,7 @@ if [ ! -e "${SERVICE_FILE}" ]; then
               ExecStart=/usr/bin/node /var/www/html/nodejs/NodeJSProject1/TCPserver.js
                           Restart=on-failure
               [Install]
-              WantedBy=multi-user.target" > ${SERVICE_FILE}
+              WantedBy=multi-user.target" > /lib/systemd/system/${serviceNameInput}".service"
 	     sudo systemctl daemon-reload
              echo "Creating Socket Server"
   else
