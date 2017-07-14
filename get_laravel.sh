@@ -21,7 +21,7 @@ function setPermissions {
    #Set proper permissions on files
    sudo chown -R www-data:www-data ${CHECK_DIRECTORY}'/'${laravelInput};
    sudo chmod -R 755 ${CHECK_DIRECTORY};
-   sudo chmod -R 777 ${CHECK_DIRECTORY}'/storage';
+   sudo chmod -R 777 ${CHECK_DIRECTORY}'/'${laravelInput}'/storage';
 }
 
 function installComposer {
