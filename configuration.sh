@@ -33,7 +33,7 @@ sudo su<<EOF
 EOF
 }
 
-function launchServiceFIle_14 {
+function launchServiceFile_14 {
 
 sudo apt-get install -y nodejs;
 sudo apt-get install -y nodejs-legacy;
@@ -64,7 +64,7 @@ if [ ! -e "${SERVICE_FILE}" ]; then
   fi
 EOF
 }
-function launchServiceFIle_16 {
+function launchServiceFile_16 {
 
 sudo apt-get install -y nodejs;
 sudo apt-get install -y nodejs-legacy;
