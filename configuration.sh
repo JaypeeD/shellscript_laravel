@@ -9,6 +9,7 @@ sudo su<<EOF
   CONFIG_FILE="/etc/apache2/sites-available/"${confignameInput}".conf"
   if [ ! -e "${CONFIG_FILE}" ]; then
     echo "
+    <VirtualHost *:80>
     	  ServerName ews.dev.com
           DocumentRoot /var/www/html/EWS_laravel/public
           <Directory /var/www/html/EWS_laravel>
@@ -16,7 +17,10 @@ sudo su<<EOF
           </Directory>
           ErrorLog ${APACHE_LOG_DIR}/error.log
           LogLevel warn
-          CustomLog ${APACHE_LOG_DIR}/access.log combined" > ${CONFIG_FILE}
+          CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>" > ${CONFIG_FILE}
+    echo -e $"\nNew Virtual Host Created\n"
+    
      sudo a2ensite ${confignameInput};
      sudo a2dissite 000-default.conf;
      sudo service apache2 reload;
