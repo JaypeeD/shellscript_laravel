@@ -9,8 +9,7 @@ sudo su<<EOF
   CONFIG_FILE="/etc/apache2/sites-available/"${confignameInput}".conf"
   if [ ! -e "${CONFIG_FILE}" ]; then
 
-    echo "
-      <VirtualHost *:80>
+    echo "<VirtualHost *:80>
 
           ServerName ews.dev.com
           DocumentRoot /var/www/html/EWS_laravel/public
