@@ -1,7 +1,6 @@
 #!/bin/bash
 
 CHECK_DIRECTORY="/var/www/html"
-LARAVEL_FOLDER_NAME=
 
 function installLaravel {
    cd /var/www/html;
@@ -17,13 +16,7 @@ function installLaravel {
 
 function setPermissions {
    echo 'Enter Laravel Folder Name: '
-   read laravelInput
-   
-   if [ -z "$(LARAVEL_FOLDER_NAME)"]; then
-	LARAVEL_FOLDER_NAME=${laravelInput}
-   else
-        echo "NOT EMPTY!"
-   fi    
+   read laravelInput 
 
    #Set proper permissions on files
    sudo chown -R www-data:www-data ${CHECK_DIRECTORY}'/'${laravelInput};
@@ -43,6 +36,8 @@ echo 'Installing Git ...'
 sudo apt-get install git;
 
 #Check if the directory is empty
+cd
+
 if [ "$(ls -A ${CHECK_DIRECTORY})" ]; then
    for i in $(ls -l ${CHECK_DIRECTORY})
       do
