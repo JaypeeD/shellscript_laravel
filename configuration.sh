@@ -113,6 +113,8 @@ esac
 }
 
 sudo apt-get install -y php7.0-mysql;
+sudo apt-get update;
+sudo apt-get install systemd;
 createVirtualHost
 chooseVersion 
 
