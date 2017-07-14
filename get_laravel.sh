@@ -22,6 +22,10 @@ function setPermissions {
    sudo chown -R www-data:www-data ${CHECK_DIRECTORY}'/'${laravelInput};
    sudo chmod -R 755 ${CHECK_DIRECTORY};
    sudo chmod -R 777 ${CHECK_DIRECTORY}'/'${laravelInput}'/storage';
+   
+   echo 'Setting Encryption Key'
+   cd ${CHECK_DIRECTORY}'/EWS_laravel'
+   sudo php artisan key:generate
 }
 
 function installComposer {
@@ -43,11 +47,11 @@ if [ "$(ls -A ${CHECK_DIRECTORY})" ]; then
 	sudo rm -r ${CHECK_DIRECTORY}'/'${i};
       done
    installLaravel
-   setPermissions
-   installComposer  
+   installComposer
+   setPermissions  
   
 else
    installLaravel
-   setPermissions 
    installComposer 
+   setPermissions 
 fi
