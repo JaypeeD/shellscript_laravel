@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CHECK_DIRECTORY = "/var/www/html"
+CHECK_DIRECTORY="/var/www/html"
 LARAVEL_FOLDER_NAME=
 
 function installLaravel {
@@ -19,8 +19,8 @@ function setPermissions {
    echo 'Enter Laravel Folder Name: '
    read laravelInput
    
-   if [ -z "$(LARAVEL_FOLDER_NAME)" ]; then
-	LARAVEL_FOLDER_NAME=${laravelInput}
+   if [ -z "$(LARAVEL_FOLDER_NAME)"]; then
+   LARAVEL_FOLDER_NAME=${laravelInput}
    else
         echo "NOT EMPTY!"
    fi    
@@ -34,7 +34,7 @@ function setPermissions {
 function setEncryptionKey {
    cd ${CHECK_DIRECTORY}'/'${LARAVEL_FOLDER_NAME}<<EOF
 
-	sudo composer install
+   sudo composer install
 
    EOF
 }
@@ -49,8 +49,8 @@ sudo apt-get install git;
 if [ "$(ls -A ${CHECK_DIRECTORY})" ]; then
    for i in $(ls -l ${CHECK_DIRECTORY})
       do
-	sudo chown -R triune:triune ${i};
-	sudo rm -r ${i};
+   sudo chown -R triune:triune ${i};
+   sudo rm -r ${i};
       done
    installLaravel
    setPermissions
@@ -62,6 +62,3 @@ else
    setEncryptionKey 
 
 fi
-
-
-
