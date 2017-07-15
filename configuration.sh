@@ -41,6 +41,9 @@ function launchServiceFile_14 {
 
 sudo apt-get install -y nodejs;
 sudo apt-get install -y nodejs-legacy;
+sudo apt-get install npm;
+cd /var/www/html/EWS_nodejs
+sudo npm install;
 
 echo 'Enter Service Name: '
 read serviceNameInput
@@ -76,6 +79,9 @@ function launchServiceFile_16 {
 
 sudo apt-get install -y nodejs;
 sudo apt-get install -y nodejs-legacy;
+sudo apt-get install npm;
+cd /var/www/html/EWS_nodejs
+sudo npm install;
 
 echo 'Enter Service Name: '
 read serviceNameInput
