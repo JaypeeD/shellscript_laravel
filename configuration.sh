@@ -37,13 +37,16 @@ sudo su<<EOF
 EOF
 }
 
-function launchServiceFile_14 {
+function installNodeNpm {
 
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -;
 sudo apt-get install -y nodejs;
-sudo apt-get install -y nodejs-legacy;
-sudo apt-get install npm;
 cd /var/www/html/EWS_nodejs
 sudo npm install;
+
+}
+
+function launchServiceFile_14 {
 
 echo 'Enter Service Name: '
 read serviceNameInput
@@ -134,4 +137,5 @@ sudo apt-get install -y php7.0-mysql;
 sudo apt-get update;
 sudo apt-get install systemd;
 createVirtualHost
+installNodeNpm
 chooseVersion
